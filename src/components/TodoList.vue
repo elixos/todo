@@ -4,6 +4,7 @@
     @drop="drop(status)"
     @dragover.prevent
     @dragevent.prevent
+    @touchend.prevent="drop(status)"
     v-for="status in 3"
     :key="status"
   >
@@ -13,7 +14,9 @@
         <div
           draggable="true"
           @dragstart="drag(todo)"
-          v-on:dblclick="importantTodo(todo.id, todo.important)"
+          @touchstart.prevent="drag(todo)"
+          @touchmove="move($event)"
+          @dblclick="importantTodo(todo.id, todo.important)"
           v-if="todo.status === status"
           :class="todo.important ? 'important' : ''"
           class="item"
@@ -75,12 +78,22 @@ async function statusTodo(id: string, status: number) {
 }
 
 function drag(todo: any) {
+  console.log(todo);
   task.value = todo;
 }
 
 function drop(destiny: number) {
   statusTodo(task.value.id, destiny);
   if (destiny === 3) importantTodo(task.value.id, true);
+}
+
+function move(evt: any) {
+  let x = evt.changedTouches[0].clientX;
+  let y = evt.changedTouches[0].clientY;
+}
+
+function ending() {
+  console.log("bien puesto");
 }
 </script>
 
