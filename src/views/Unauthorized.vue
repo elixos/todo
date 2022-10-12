@@ -1,8 +1,6 @@
 <template>
   <main>
     <img src="../assets/logo.svg" />
-    <RouterLink to="/">Login</RouterLink>
-    <RouterLink to="/register">register</RouterLink>
     <SignIn />
   </main>
 </template>
