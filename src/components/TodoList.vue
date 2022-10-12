@@ -23,6 +23,7 @@
           </div>
 
           {{ todo.desc }}
+          <b @click="editTodo(todo.id, todo.task)"> ≡</b>
         </div>
       </template>
     </div>
