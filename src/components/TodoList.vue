@@ -23,7 +23,6 @@
           </div>
 
           {{ todo.desc }}
-          <b @click="editTodo(todo.id, todo.task)"> ≡</b>
         </div>
       </template>
     </div>
@@ -120,14 +119,17 @@ function drop(destiny: number) {
   padding: 3vh 3vw;
   cursor: pointer;
 }
+.item div {
+  margin-bottom: 1vh;
+}
 .item span {
   font-weight: bold;
-  margin-bottom: 1vh;
+  padding-bottom: 0.4vh;
+  border-bottom: 1px solid #fafafa;
 }
 
 .important {
   background-color: #db5461;
   color: #fafafa;
-  font-weight: bold;
 }
 </style>

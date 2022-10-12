@@ -75,7 +75,11 @@ export const useAuthStore = defineStore("auth", () => {
 export const useTodoStore = defineStore("todo", () => {
   const taskArr = ref<any[]>([]);
 
-  async function addTodo(text: string, status: number = 1): Promise<void> {
+  async function addTodo(
+    text: string,
+    desc: string,
+    status: number = 1
+  ): Promise<void> {
     await supabase
       .from("todos")
       .insert({
@@ -84,6 +88,7 @@ export const useTodoStore = defineStore("todo", () => {
         board: 2,
         status: status,
         important: false,
+        desc: desc,
       })
       .single();
   }

@@ -1,8 +1,8 @@
 <template>
-  <a href="" style="position: absolute; right: 0" @click="authStore.signOut"
+  <!-- <a href="" style="position: absolute; right: 0" @click="authStore.signOut"
     >logout</a
-  >
-  <div id="add" @click="addTodo('Nueva Tarea')" href="">+</div>
+  > -->
+  <AddTaskVue />
   <main>
     <aside>
       <div id="fixed">
@@ -16,24 +16,18 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
 import { useAuthStore, useTodoStore } from "../supabase";
 import Sidebar from "../components/Sidebar.vue";
 import TodoList from "../components/TodoList.vue";
+import AddTaskVue from "../components/AddTask.vue";
 const todoStore = useTodoStore();
 const authStore = useAuthStore();
+
 // const { email } = storeToRefs(authStore);
 function signOut() {
   authStore.signIn;
 }
 
-async function addTodo(text: string) {
-  try {
-    await todoStore.addTodo(text);
-  } catch (error: any) {
-    console.log(error.message);
-  }
-}
 async function showBacklog(board: string) {}
 </script>
 
@@ -52,21 +46,10 @@ section {
   display: flex;
 }
 
-#add {
-  position: fixed;
-  z-index: 2;
-  bottom: 0;
-  left: 0;
-  background-color: #084b83;
-  padding: 3vh 3vh;
-  font-size: 3em;
-  color: #fafafa;
-  font-weight: bold;
-  cursor: pointer;
-}
 aside {
   flex: 0 0 20vw;
   background-color: #084b83;
+  max-width: 20vw;
 }
 #fixed {
   position: fixed;
