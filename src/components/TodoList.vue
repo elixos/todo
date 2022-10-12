@@ -40,7 +40,7 @@ onUpdated(() => todoStore.readTodo());
 const statusArr: string[] = ["A futuro", "Pendiente", "En curso", "Completado"];
 const todoStore = useTodoStore();
 const { taskArr } = storeToRefs(todoStore);
-const task = ref({});
+const task = ref<any>(null);
 
 async function importantTodo(id: string, bool: boolean) {
   try {

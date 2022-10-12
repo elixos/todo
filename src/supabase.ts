@@ -24,11 +24,9 @@ export const useAuthStore = defineStore("auth", () => {
     data: Subscription | null;
     error: ApiError | null;
   }> {
-    return supabase.auth.onAuthStateChange(
-      (event: AuthChangeEvent, session: Session) => {
-        userSession.value = session;
-      }
-    );
+    return supabase.auth.onAuthStateChange((event, session) => {
+      userSession.value = session;
+    });
   }
 
   async function signIn(
