@@ -1,9 +1,18 @@
 <template>
-  <RouterView />
+  <template v-if="userSession === null">
+    <Unauthorized />
+  </template>
+  <template v-else>
+    <RouterView />
+  </template>
 </template>
+
 <script setup lang="ts">
-import { useAuthStore } from "./stores/auth";
+import { onMounted } from "vue";
+import { useAuthStore, userSession } from "./supabase";
+import Unauthorized from "./views/Unauthorized.vue";
+
 const authStore = useAuthStore();
 
-authStore.session();
+onMounted(() => authStore.session());
 </script>

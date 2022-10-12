@@ -1,23 +1,22 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeVue from "../components/Home.vue";
 import SignUpVue from "../components/SignUp.vue";
-import RegisterVue from "../components/SignUp.vue";
+import Home from "../views/Home.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: HomeVue,
+    component: Home,
   },
   {
-    path: "/signup",
+    path: "/register",
     name: "SignUp",
     component: SignUpVue,
   },
   {
-    path: "/desk",
-    name: "Desk",
-    component: () => import("../components/Desk.vue"),
+    path: "/todo",
+    name: "Todo",
+    component: () => import("../views/Home.vue"),
   },
 ];
 const router = createRouter({

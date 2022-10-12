@@ -19,7 +19,7 @@
 import { storeToRefs } from "pinia";
 import { useAuthStore, useTodoStore } from "../supabase";
 import Sidebar from "../components/Sidebar.vue";
-import TodoList from "./TodoList.vue";
+import TodoList from "../components/TodoList.vue";
 const todoStore = useTodoStore();
 const authStore = useAuthStore();
 // const { email } = storeToRefs(authStore);

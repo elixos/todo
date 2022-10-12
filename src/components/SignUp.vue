@@ -9,10 +9,11 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
 import { ref } from "vue";
-import { useAuthStore } from "../stores/auth";
+import { useAuthStore } from "../supabase";
 
 const authStore = useAuthStore();
-const { email } = storeToRefs(authStore);
+// const { email } = storeToRefs(authStore);
+const email = ref("");
 const password = ref("");
 
 async function signUp(email: string, password: string) {
