@@ -4,18 +4,21 @@
     @drop="drop(status)"
     @dragover.prevent
     @dragevent.prevent
-    @touchend.prevent="drop(status)"
     v-for="status in 3"
     :key="status"
+    :name="status"
   >
-    <div class="title">{{ statusArr[status].toLocaleUpperCase() }}</div>
-    <div class="lista">
+    <div class="title" @touchend.prevent="drop(status)">
+      {{ statusArr[status].toLocaleUpperCase() }}
+    </div>
+    <div class="lista" v-show="inMove">
       <template v-for="(todo, index) in taskArr" :key="index">
         <div
           draggable="true"
           @dragstart="drag(todo)"
           @touchstart.prevent="drag(todo)"
           @touchmove="move($event)"
+          @touchend="ending($event)"
           @dblclick="importantTodo(todo.id, todo.important)"
           v-if="todo.status === status"
           :class="todo.important ? 'important' : ''"
@@ -44,6 +47,7 @@ const statusArr: string[] = ["A futuro", "Pendiente", "En curso", "Completado"];
 const todoStore = useTodoStore();
 const { taskArr } = storeToRefs(todoStore);
 const task = ref<any>(null);
+const inMove = ref(true);
 
 async function importantTodo(id: string, bool: boolean) {
   try {
@@ -78,7 +82,6 @@ async function statusTodo(id: string, status: number) {
 }
 
 function drag(todo: any) {
-  console.log(todo);
   task.value = todo;
 }
 
@@ -88,12 +91,16 @@ function drop(destiny: number) {
 }
 
 function move(evt: any) {
-  let x = evt.changedTouches[0].clientX;
-  let y = evt.changedTouches[0].clientY;
+  inMove.value = false;
 }
 
-function ending() {
-  console.log("bien puesto");
+function ending(evt: any) {
+  let x = evt.changedTouches[0].clientX;
+  let y = evt.changedTouches[0].clientY;
+  let target = document.elementFromPoint(x, y);
+  inMove.value = true;
+  let statusValue = Number(target.attributes[1].value);
+  drop(statusValue);
 }
 </script>
 
@@ -147,3 +154,6 @@ function ending() {
   color: #fafafa;
 }
 </style>
+
+function substr(arg0: Attr): any { throw new Error("Function not implemented.");
+}
