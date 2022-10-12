@@ -97,7 +97,7 @@ function move(evt: any) {
 function ending(evt: any) {
   let x = evt.changedTouches[0].clientX;
   let y = evt.changedTouches[0].clientY;
-  let target = document.elementFromPoint(x, y);
+  let target: any = document.elementFromPoint(x, y);
   inMove.value = true;
   let statusValue = Number(target.attributes[1].value);
   drop(statusValue);
