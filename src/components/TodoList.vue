@@ -100,6 +100,7 @@ function drop(destiny: number) {
   padding: 5vh 3vh 5vh 1vh;
   font-size: 1.4em;
   font-weight: bold;
+  cursor: default;
 }
 .lista {
   flex: 1;
@@ -117,7 +118,7 @@ function drop(destiny: number) {
   font-size: 1.2em;
   border-radius: 5px;
   padding: 3vh 3vw;
-  cursor: pointer;
+  cursor: grab;
 }
 .item div {
   margin-bottom: 1vh;

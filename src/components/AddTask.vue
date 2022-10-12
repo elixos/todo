@@ -3,7 +3,7 @@
     <div>
       <input type="text" v-model="title" placeholder="Título" />
       <input type="text" v-model="desc" placeholder="Descripción" />
-      <b @click="addTodo(title, desc)">Pendiente</b>
+      <b @click="addTodo(title, desc)">Pendiente</b><br />
       <b @click="addTodo(title, desc, 0)">Backlog</b>
       <div @click="changeAdd"><span>x</span></div>
     </div>
@@ -32,9 +32,12 @@ async function addTodo(text: string, desc: string, status?: number) {
 
 <style scoped>
 div:first-child {
-  max-width: 20vw;
+  max-width: 16vw;
 }
 
+input {
+  width: 100%;
+}
 #add {
   position: fixed;
   z-index: 2;
