@@ -1,6 +1,7 @@
 <template>
   <div
-    class="status"
+    class="stat"
+    :class="'stat' + status"
     @drop="drop(status)"
     @dragover.prevent
     @dragevent.prevent
@@ -8,7 +9,7 @@
     :key="status"
     :name="status"
   >
-    <div class="title" @touchend.prevent="drop(status)">
+    <div class="title">
       {{ statusArr[status].toLocaleUpperCase() }}
     </div>
     <div class="lista" v-show="inMove">
@@ -19,6 +20,7 @@
           @touchstart.prevent="drag(todo)"
           @touchmove="move($event)"
           @touchend="ending($event)"
+          @contextmenu.prevent="rightClick"
           @dblclick="importantTodo(todo.id, todo.important)"
           v-if="todo.status === status"
           :class="todo.important ? 'important' : ''"
@@ -39,7 +41,6 @@
 import { onMounted, onUpdated, ref } from "vue";
 import { useTodoStore } from "../supabase";
 import { storeToRefs } from "pinia";
-
 onMounted(() => todoStore.readTodo());
 onUpdated(() => todoStore.readTodo());
 
@@ -91,26 +92,41 @@ function drop(destiny: number) {
 }
 
 function move(evt: any) {
-  inMove.value = false;
+  // inMove.value = false;
 }
 
 function ending(evt: any) {
   let x = evt.changedTouches[0].clientX;
   let y = evt.changedTouches[0].clientY;
-  let target: any = document.elementFromPoint(x, y);
-  inMove.value = true;
-  let statusValue = Number(target.attributes[1].value);
+  let target: any = document.elementsFromPoint(x, y);
+
+  let statusValue = target[target.length - 5].attributes[1].value;
   drop(statusValue);
+}
+
+function rightClick() {
+  console.log("click derecho");
 }
 </script>
 
 <style scoped>
-.status {
+.stat {
   margin: 10px 1vh;
   /* flex-grow: 1; */
   flex: 1 1 0px;
   width: 0;
   display: flex;
+}
+.stat2,
+.stat3 {
+  display: none;
+}
+
+@media only screen and (min-width: 600px) {
+  .stat2,
+  .stat3 {
+    display: flex;
+  }
 }
 .title {
   writing-mode: vertical-lr;

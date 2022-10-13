@@ -50,6 +50,12 @@ aside {
   flex: 0 0 20vw;
   background-color: #084b83;
   max-width: 20vw;
+  display: none;
+}
+@media only screen and (min-width: 600px) {
+  aside {
+    display: block;
+  }
 }
 #fixed {
   position: fixed;

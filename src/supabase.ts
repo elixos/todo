@@ -78,7 +78,7 @@ export const useTodoStore = defineStore("todo", () => {
   async function addTodo(
     text: string,
     desc: string,
-    status: number = 1
+    status: number
   ): Promise<void> {
     await supabase
       .from("todos")

@@ -1,11 +1,13 @@
 <template>
   <div v-if="addButton" id="add">
+    <h3>Nueva Tarea</h3>
     <div>
       <input type="text" v-model="title" placeholder="Título" />
       <input type="text" v-model="desc" placeholder="Descripción" />
       <div @click="changeAdd">
-        <span class="equis">+</span><b @click="addTodo(title, desc)">Pend</b>
-        <b @click="addTodo(title, desc, 0)">Back</b>
+        <span class="equis">+ </span
+        ><b @click="addTodo(title, desc, 1)"> Añadir </b>
+        <b @click="addTodo(title, desc, 0)">▲</b>
       </div>
     </div>
   </div>
@@ -34,6 +36,9 @@ async function addTodo(text: string, desc: string, status?: number) {
 </script>
 
 <style scoped>
+h3 {
+  margin-bottom: 1vh;
+}
 div:first-child {
   max-width: 16vw;
 }

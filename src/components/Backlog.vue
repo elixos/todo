@@ -1,0 +1,95 @@
+<template>
+  <div
+    class="status"
+    @drop="drop(status)"
+    @dragover.prevent
+    @dragevent.prevent
+    :key="0"
+    :name="0"
+  >
+    <div class="title">En Reserva</div>
+    <div>
+      <template v-for="(todo, index) in taskArr" :key="index">
+        <div class="lista" v-if="todo.status === 0">
+          <div>
+            <span>{{ todo.task }}</span>
+          </div>
+
+          {{ todo.desc }}
+        </div>
+      </template>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { onMounted, onUpdated, ref } from "vue";
+import { useTodoStore } from "../supabase";
+import { storeToRefs } from "pinia";
+import { drop } from "../components/TodoList.vue";
+const todoStore = useTodoStore();
+const { taskArr } = storeToRefs(todoStore);
+const task = ref<any>(null);
+function drop(destiny: number) {
+  statusTodo(task.value.id, destiny);
+}
+async function statusTodo(id: string, status: number) {
+  try {
+    await todoStore.statusTodo(id, status);
+  } catch (error: any) {
+    console.log(error.message);
+  }
+}
+</script>
+
+<style scoped>
+.status {
+  display: flex;
+  flex-direction: column;
+  color: #fafafa;
+  margin-left: 1vw;
+}
+.title {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 1vh;
+}
+.lista {
+  flex: 1;
+  margin-bottom: 1vh;
+}
+.lista span {
+  font-weight: bold;
+}
+
+.item {
+  background-color: #e3f2fd;
+  color: #084b83;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  text-align: left;
+  margin: 1vh 0px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  padding: 3vh 3vw;
+  cursor: grab;
+}
+.item div {
+  margin-bottom: 1vh;
+}
+.item span {
+  font-weight: bold;
+  padding-bottom: 0.4vh;
+  border-bottom: 1px solid #fafafa;
+}
+
+.important {
+  background-color: #db5461;
+  color: #fafafa;
+}
+</style>
+
+function substr(arg0: Attr): any { throw new Error("Function not implemented.");
+}
