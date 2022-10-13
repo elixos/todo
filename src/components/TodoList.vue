@@ -80,14 +80,6 @@ async function delTodo(id: string) {
     console.log(error.message);
   }
 }
-async function editTodo(id: string, old: string) {
-  let newtask: string = prompt("Edit task", old)!;
-  try {
-    await todoStore.editTodo(id, newtask);
-  } catch (error: any) {
-    console.log(error.message);
-  }
-}
 
 async function statusTodo(id: string, status: number) {
   try {
