@@ -74,6 +74,7 @@ export const useAuthStore = defineStore("auth", () => {
 
 export const useTodoStore = defineStore("todo", () => {
   const taskArr = ref<any[]>([]);
+  const edited = ref(true);
 
   async function addTodo(
     text: string,
@@ -127,6 +128,7 @@ export const useTodoStore = defineStore("todo", () => {
 
   return {
     taskArr,
+    edited,
     addTodo,
     delTodo,
     importantTodo,

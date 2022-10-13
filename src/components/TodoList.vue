@@ -1,13 +1,24 @@
 <template>
+  <div id="mobside">
+    <div class="title2" name="1" @click="viewCat(2)" v-show="cat != 1">
+      PENDIENTE
+    </div>
+    <div class="title2" name="2" @click="viewCat(2)" v-show="cat != 2">
+      EN CURSO
+    </div>
+    <div class="title2" name="3" @click="viewCat(3)" v-show="cat != 3">
+      COMPLETADO
+    </div>
+  </div>
   <div
-    class="stat"
-    :class="'stat' + status"
+    :class="'status' + status"
     @drop="drop(status)"
     @dragover.prevent
     @dragevent.prevent
     v-for="status in 3"
     :key="status"
     :name="status"
+    v-show="status === cat || screen > 700"
   >
     <div class="title">
       {{ statusArr[status].toLocaleUpperCase() }}
@@ -46,9 +57,11 @@ onUpdated(() => todoStore.readTodo());
 
 const statusArr: string[] = ["A futuro", "Pendiente", "En curso", "Completado"];
 const todoStore = useTodoStore();
-const { taskArr } = storeToRefs(todoStore);
+const { taskArr, edited } = storeToRefs(todoStore);
 const task = ref<any>(null);
 const inMove = ref(true);
+const cat = ref(2);
+let screen = window.innerWidth;
 
 async function importantTodo(id: string, bool: boolean) {
   try {
@@ -99,33 +112,58 @@ function ending(evt: any) {
   let x = evt.changedTouches[0].clientX;
   let y = evt.changedTouches[0].clientY;
   let target: any = document.elementsFromPoint(x, y);
-
-  let statusValue = target[target.length - 5].attributes[1].value;
-  drop(statusValue);
+  let i = 0;
+  while (i < target.length) {
+    if (target[i].attributes[1].name === "name") {
+      drop(target[i].attributes[1].value);
+      break;
+    }
+    i++;
+  }
 }
 
 function rightClick() {
-  console.log("click derecho");
+  console.log(edited.value);
+  edited.value = true;
+  console.log(edited.value);
+}
+
+function viewCat(status: number) {
+  console.log(status);
+  cat.value = status;
 }
 </script>
 
 <style scoped>
-.stat {
+.status1,
+.status2,
+.status3 {
   margin: 10px 1vh;
   /* flex-grow: 1; */
   flex: 1 1 0px;
   width: 0;
   display: flex;
 }
-.stat2,
-.stat3 {
+/* .status2,
+.status3 {
   display: none;
-}
+} */
 
-@media only screen and (min-width: 600px) {
-  .stat2,
-  .stat3 {
+#mobside {
+  display: block;
+  position: absolute;
+  min-height: 100vh;
+  width: 2vh;
+  background-color: #084b83;
+  padding-top: 35vh;
+}
+@media only screen and (min-width: 700px) {
+  .status2,
+  .status3 {
     display: flex;
+  }
+  #mobside {
+    display: none;
   }
 }
 .title {
@@ -135,6 +173,18 @@ function rightClick() {
   text-align: end;
   padding: 5vh 3vh 5vh 1vh;
   font-size: 1.4em;
+  font-weight: bold;
+  cursor: default;
+  max-height: 35vw;
+}
+.title2 {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  background-color: #084b83;
+  color: #fafafa;
+  text-align: end;
+  padding: 2vh;
+  font-size: 1.2em;
   font-weight: bold;
   cursor: default;
 }

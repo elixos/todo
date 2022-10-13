@@ -5,7 +5,7 @@
   <AddTaskVue />
   <main>
     <aside>
-      <div id="fixed">
+      <div v-if="edited" id="fixed">
         <Sidebar />
       </div>
     </aside>
@@ -20,10 +20,11 @@ import { useAuthStore, useTodoStore } from "../supabase";
 import Sidebar from "../components/Sidebar.vue";
 import TodoList from "../components/TodoList.vue";
 import AddTaskVue from "../components/AddTask.vue";
+import { storeToRefs } from "pinia";
 const todoStore = useTodoStore();
 const authStore = useAuthStore();
 
-// const { email } = storeToRefs(authStore);
+const { edited } = storeToRefs(todoStore);
 function signOut() {
   authStore.signIn;
 }
@@ -52,7 +53,7 @@ aside {
   max-width: 20vw;
   display: none;
 }
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 700px) {
   aside {
     display: block;
   }

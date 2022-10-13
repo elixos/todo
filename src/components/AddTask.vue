@@ -39,16 +39,22 @@ input {
   width: 100%;
 }
 #add {
-  position: fixed;
-  z-index: 2;
-  bottom: 0;
-  left: 0;
-  background-color: #084b83;
-  padding: 2vh 2vw;
-  font-size: 1.2em;
-  color: #fafafa;
-  font-weight: bold;
-  cursor: pointer;
+  display: none;
+}
+@media only screen and (min-width: 700px) {
+  #add {
+    display: block;
+    position: fixed;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    background-color: #084b83;
+    padding: 2vh 2vw;
+    font-size: 1.2em;
+    color: #fafafa;
+    font-weight: bold;
+    cursor: pointer;
+  }
 }
 #add span {
   font-size: 3rem;
