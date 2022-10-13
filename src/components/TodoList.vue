@@ -10,6 +10,7 @@
       COMPLETADO
     </div>
   </div>
+  <div id="more"><img src="../assets/more.png" /></div>
   <div
     :class="'status' + status"
     @drop="drop(status)"
@@ -157,10 +158,19 @@ function viewCat(status: number) {
   background-color: #084b83;
   padding-top: 35vh;
 }
+
+#more {
+  position: fixed;
+  bottom: 0;
+  width: 15vw;
+}
+#more img {
+  width: 12vw;
+  margin: 2vw;
+}
 @media only screen and (min-width: 700px) {
-  .status2,
-  .status3 {
-    display: flex;
+  #more {
+    display: none;
   }
   #mobside {
     display: none;
