@@ -6,8 +6,8 @@
       <input type="text" v-model="desc" placeholder="Descripción" />
       <div @click="changeAdd">
         <span class="equis">+ </span
-        ><b @click="addTodo(title, desc, 1)"> Añadir </b>
-        <b @click="addTodo(title, desc, 0)">▲</b>
+        ><b @click="todoStore.addTodo(title, desc, 1)"> Añadir </b>
+        <b @click="todoStore.addTodo(title, desc, 0)">▲</b>
       </div>
     </div>
   </div>
@@ -24,14 +24,6 @@ const desc = ref("");
 const addButton = ref(false);
 function changeAdd() {
   addButton.value = !addButton.value;
-}
-
-async function addTodo(text: string, desc: string, status?: number) {
-  try {
-    await todoStore.addTodo(text, desc, status);
-  } catch (error: any) {
-    console.log(error.message);
-  }
 }
 </script>
 
