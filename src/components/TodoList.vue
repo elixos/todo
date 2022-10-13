@@ -116,7 +116,7 @@ function ending(evt: any) {
   }
 }
 
-function rightClick(todo) {
+function rightClick(todo: any) {
   edited.value = true;
   task.value = todo;
 }

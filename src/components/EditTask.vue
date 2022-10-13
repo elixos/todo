@@ -18,8 +18,8 @@ import { ref } from "vue";
 import { useTodoStore } from "../supabase";
 const todoStore = useTodoStore();
 const { task, edited } = storeToRefs(todoStore);
-const title = ref(null);
-const desc = ref(null);
+const title = ref("");
+const desc = ref("");
 const addButton = ref(false);
 function changeEdit() {
   edited.value = !edited.value;
