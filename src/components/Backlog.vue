@@ -1,12 +1,5 @@
 <template>
-  <div
-    class="status"
-    @drop="drop(status)"
-    @dragover.prevent
-    @dragevent.prevent
-    :key="0"
-    :name="0"
-  >
+  <div class="status" :key="0">
     <div class="title">En Reserva</div>
     <div>
       <template v-for="(todo, index) in taskArr" :key="index">
@@ -16,6 +9,7 @@
           </div>
 
           {{ todo.desc }}
+          <b @click="todoStore.statusTodo(todo.id, 1)">==></b>
         </div>
       </template>
     </div>
@@ -23,23 +17,10 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUpdated, ref } from "vue";
 import { useTodoStore } from "../supabase";
 import { storeToRefs } from "pinia";
-import { drop } from "../components/TodoList.vue";
 const todoStore = useTodoStore();
 const { taskArr } = storeToRefs(todoStore);
-const task = ref<any>(null);
-function drop(destiny: number) {
-  statusTodo(task.value.id, destiny);
-}
-async function statusTodo(id: string, status: number) {
-  try {
-    await todoStore.statusTodo(id, status);
-  } catch (error: any) {
-    console.log(error.message);
-  }
-}
 </script>
 
 <style scoped>
