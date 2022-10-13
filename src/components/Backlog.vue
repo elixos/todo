@@ -3,13 +3,16 @@
     <div class="title">En Reserva</div>
     <div>
       <template v-for="(todo, index) in taskArr" :key="index">
-        <div class="lista" v-if="todo.status === 0">
+        <div
+          class="lista"
+          v-if="todo.status === 0"
+          @click="todoStore.statusTodo(todo.id, 1)"
+        >
           <div>
             <span>{{ todo.task }}</span>
           </div>
 
           {{ todo.desc }}
-          <b @click="todoStore.statusTodo(todo.id, 1)">==></b>
         </div>
       </template>
     </div>
@@ -35,9 +38,18 @@ const { taskArr } = storeToRefs(todoStore);
   font-weight: bold;
   margin-bottom: 1vh;
 }
+
 .lista {
   flex: 1;
   margin-bottom: 1vh;
+}
+
+@media only screen and (min-width: 1200px) {
+  .lista {
+    background: url(../assets/next.png) no-repeat right;
+    background-size: contain;
+    cursor: pointer;
+  }
 }
 .lista span {
   font-weight: bold;
@@ -71,6 +83,3 @@ const { taskArr } = storeToRefs(todoStore);
   color: #fafafa;
 }
 </style>
-
-function substr(arg0: Attr): any { throw new Error("Function not implemented.");
-}

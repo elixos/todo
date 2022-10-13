@@ -28,7 +28,7 @@
         <div
           draggable="true"
           @dragstart="drag(todo)"
-          @contextmenu.prevent="rightClick"
+          @contextmenu.prevent="rightClick(todo)"
           @dblclick="importantTodo(todo.id, todo.important)"
           v-if="todo.status === status"
           :class="todo.important ? 'important' : ''"
@@ -50,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUpdated, ref } from "vue";
+import { onMounted, onUpdated, reactive, ref } from "vue";
 import { useTodoStore } from "../supabase";
 import { storeToRefs } from "pinia";
 onMounted(() => todoStore.readTodo());
@@ -58,11 +58,11 @@ onUpdated(() => todoStore.readTodo());
 
 const statusArr: string[] = ["A futuro", "Pendiente", "En curso", "Completado"];
 const todoStore = useTodoStore();
-const { taskArr, edited } = storeToRefs(todoStore);
-const task = ref<any>(null);
+const { taskArr, task, edited } = storeToRefs(todoStore);
 const inMove = ref(true);
 const cat = ref(1);
-let screen = window.innerWidth;
+const screen = ref(window.innerWidth);
+// let screen = window.innerWidth;
 
 async function importantTodo(id: string, bool: boolean) {
   try {
@@ -123,10 +123,9 @@ function ending(evt: any) {
   }
 }
 
-function rightClick() {
-  console.log(edited.value);
+function rightClick(todo) {
   edited.value = true;
-  console.log(edited.value);
+  task.value = todo;
 }
 
 function viewCat(status: number) {
@@ -152,7 +151,7 @@ function viewCat(status: number) {
 
 #mobside {
   display: block;
-  position: absolute;
+  position: fixed;
   min-height: 100vh;
   width: 2vh;
   background-color: #084b83;
@@ -221,6 +220,3 @@ function viewCat(status: number) {
   color: #fafafa;
 }
 </style>
-
-function substr(arg0: Attr): any { throw new Error("Function not implemented.");
-}

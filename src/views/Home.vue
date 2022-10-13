@@ -3,9 +3,10 @@
     >logout</a
   > -->
   <AddTaskVue />
+  <EditTask />
   <main>
     <aside>
-      <div v-if="edited" id="fixed">
+      <div id="fixed">
         <Sidebar />
       </div>
     </aside>
@@ -20,6 +21,7 @@ import { useAuthStore, useTodoStore } from "../supabase";
 import Sidebar from "../components/Sidebar.vue";
 import TodoList from "../components/TodoList.vue";
 import AddTaskVue from "../components/AddTask.vue";
+import EditTask from "../components/EditTask.vue";
 import { storeToRefs } from "pinia";
 const todoStore = useTodoStore();
 const authStore = useAuthStore();

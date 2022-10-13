@@ -74,7 +74,8 @@ export const useAuthStore = defineStore("auth", () => {
 
 export const useTodoStore = defineStore("todo", () => {
   const taskArr = ref<any[]>([]);
-  const edited = ref(true);
+  const task = ref<any>(null);
+  const edited = ref(false);
 
   async function addTodo(
     text: string,
@@ -106,8 +107,17 @@ export const useTodoStore = defineStore("todo", () => {
       .single();
   }
 
-  async function editTodo(id: string, task: string): Promise<void> {
-    await supabase.from("todos").update({ task: task }).eq("id", id).single();
+  async function editTodo(
+    id: string,
+    task: string,
+    desc: string
+  ): Promise<void> {
+    console.log(id, task, desc);
+    await supabase
+      .from("todos")
+      .update({ task: task, desc: desc })
+      .eq("id", id)
+      .single();
   }
 
   async function statusTodo(id: string, status: number): Promise<void> {
@@ -128,6 +138,7 @@ export const useTodoStore = defineStore("todo", () => {
 
   return {
     taskArr,
+    task,
     edited,
     addTodo,
     delTodo,
