@@ -28,16 +28,17 @@
         <div
           draggable="true"
           @dragstart="drag(todo)"
-          @touchstart.prevent="drag(todo)"
-          @touchmove="move($event)"
-          @touchend="ending($event)"
           @contextmenu.prevent="rightClick"
           @dblclick="importantTodo(todo.id, todo.important)"
           v-if="todo.status === status"
           :class="todo.important ? 'important' : ''"
           class="item"
         >
-          <div>
+          <div
+            @touchstart.prevent="drag(todo)"
+            @touchmove="move($event)"
+            @touchend="ending($event)"
+          >
             <span>{{ todo.task }}</span>
           </div>
 
