@@ -1,6 +1,6 @@
 <template>
   <div id="mobside">
-    <div class="title2" name="1" @click="viewCat(2)" v-show="cat != 1">
+    <div class="title2" name="1" @click="viewCat(1)" v-show="cat != 1">
       PENDIENTE
     </div>
     <div class="title2" name="2" @click="viewCat(2)" v-show="cat != 2">
@@ -60,7 +60,7 @@ const todoStore = useTodoStore();
 const { taskArr, edited } = storeToRefs(todoStore);
 const task = ref<any>(null);
 const inMove = ref(true);
-const cat = ref(2);
+const cat = ref(1);
 let screen = window.innerWidth;
 
 async function importantTodo(id: string, bool: boolean) {
@@ -175,7 +175,7 @@ function viewCat(status: number) {
   font-size: 1.4em;
   font-weight: bold;
   cursor: default;
-  max-height: 35vw;
+  max-height: 42vw;
 }
 .title2 {
   writing-mode: vertical-lr;
