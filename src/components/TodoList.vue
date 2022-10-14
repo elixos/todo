@@ -122,6 +122,7 @@ function ending(evt: any) {
     }
     i++;
   }
+  console.log(target[0].attributes[0].value);
   if (target[0].attributes[0].value === "/src/assets/more.png") {
     rightClick(task.value);
     viewMore(task.value);
