@@ -101,6 +101,13 @@ function drop(destiny: number) {
   if (destiny === 3) importantTodo(task.value.id, true);
 }
 
+function rightClick(todo: any) {
+  console.log(edited.value);
+  edited.value = true;
+  task.value = todo;
+  console.log(edited.value);
+}
+
 function move(evt: any) {}
 
 function ending(evt: any) {
@@ -115,11 +122,9 @@ function ending(evt: any) {
     }
     i++;
   }
-}
-
-function rightClick(todo: any) {
-  edited.value = true;
-  task.value = todo;
+  if (target[0].attributes[0].value === "/src/assets/more.png")
+    rightClick(task.value);
+  viewMore(task.value);
 }
 
 function viewMore(todo: any) {

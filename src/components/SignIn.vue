@@ -31,34 +31,52 @@ async function signIn(email: string, password: string) {
 </script>
 <style scoped>
 div {
-  max-width: 20vw;
-  max-height: 50vh;
-  position: absolute;
-  left: 8vw;
-  bottom: 5vh;
+  position: relative;
+  width: 80vw;
+  padding: 10vh 10vw;
 }
+
 button {
   display: inline;
-  background-color: #084b83;
+  background-color: black;
   color: #fafafa;
   font-weight: bold;
   font-size: 1em;
   margin-top: 1vh;
-  padding: 0.5vw;
+  padding: 1.5vw;
   border-radius: 5px;
 }
 label {
   font-weight: bold;
   font-size: 1em;
-  color: black;
+  color: #fafafa;
 }
 input {
   border-radius: 5px;
   background-color: #fafafa;
   color: #084b83;
   height: 4vh;
-  width: 20vw;
+  width: 80%;
   border: none;
   margin-bottom: 1.3vh;
+}
+@media only screen and (min-width: 700px) {
+  div {
+    max-width: 20vw;
+    max-height: 50vh;
+    position: absolute;
+    left: 8vw;
+    bottom: 5vh;
+  }
+  label {
+    color: black;
+  }
+  input {
+    width: 20vw;
+  }
+  button {
+    background-color: #084b83;
+    padding: 0.5vw;
+  }
 }
 </style>

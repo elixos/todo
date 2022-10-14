@@ -1,7 +1,7 @@
 <template>
-  <a href="" style="position: absolute; right: 0" @click="authStore.signOut"
-    >logout</a
-  >
+  <div id="logout" href="" style="" @click="authStore.signOut">
+    <img src="../assets/logout.png" />
+  </div>
 
   <main>
     <aside>
@@ -31,7 +31,7 @@ function signOut() {
 async function showBacklog(board: string) {}
 </script>
 
-<style>
+<style scoped>
 main {
   display: flex;
   height: 100vh;
@@ -52,9 +52,30 @@ aside {
   max-width: 20vw;
   display: none;
 }
+#logout {
+  display: none;
+}
+#logout img {
+  display: none;
+}
 @media only screen and (min-width: 700px) {
   aside {
     display: block;
+  }
+
+  #logout {
+    display: block;
+    position: absolute;
+    z-index: 10;
+    left: 17vw;
+    top: 1.5vw;
+    color: #e3f2fd;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  #logout img {
+    display: block;
+    width: 2vw;
   }
 }
 #fixed {

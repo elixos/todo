@@ -48,7 +48,7 @@ input {
   display: block;
   position: relative;
   z-index: 2;
-  width: 85vw;
+  width: 80vw;
   font-size: 1.2em;
   color: #fafafa;
   font-weight: bold;

@@ -40,7 +40,13 @@ input {
   width: 100%;
 }
 #edit {
-  display: none;
+  position: relative;
+  width: 80vw;
+  height: auto;
+
+  background-color: #084b83;
+  color: #fafafa;
+  z-index: 9;
 }
 #modButton {
   display: inline;
@@ -72,6 +78,7 @@ input {
     font-weight: bold;
     cursor: pointer;
     max-width: 15vw;
+    border-bottom: none;
   }
 }
 #edit span {
@@ -87,3 +94,6 @@ input {
   margin-left: 0.1em;
 }
 </style>
+<!-- <script setup lang="ts">
+console.log("Hola mundo");
+</script> -->
