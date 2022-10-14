@@ -18,6 +18,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 // Store de control de usuario
 
 export const userSession = ref<Session | null>(null);
+export const userData = ref<any>(null);
 
 export const useAuthStore = defineStore("auth", () => {
   async function session(): Promise<{
@@ -136,6 +137,26 @@ export const useTodoStore = defineStore("todo", () => {
     taskArr.value = todos!;
   }
 
+  async function getProfile() {
+    const { data, error, status } = await supabase
+      .from("profiles")
+      .select(`nickname, email`)
+      .eq("id", userSession.value?.user?.id)
+      .single();
+    userData.value = data;
+  }
+  async function setProfile(email: string, nick: string) {
+    console.log(nick, email);
+    await supabase
+      .from("profiles")
+      .update({
+        email: email,
+        nickname: nick,
+      })
+      .eq("id", userSession.value?.user?.id)
+      .single();
+  }
+
   return {
     taskArr,
     task,
@@ -146,5 +167,7 @@ export const useTodoStore = defineStore("todo", () => {
     editTodo,
     statusTodo,
     readTodo,
+    getProfile,
+    setProfile,
   };
 });

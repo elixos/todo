@@ -8,6 +8,7 @@
 import Backlog from "./Backlog.vue";
 import AddTaskVue from "../components/AddTask.vue";
 import EditTask from "../components/EditTask.vue";
+import Profile from "../components/Profile.vue";
 </script>
 <style scoped>
 img {

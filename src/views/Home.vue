@@ -1,7 +1,7 @@
 <template>
-  <!-- <a href="" style="position: absolute; right: 0" @click="authStore.signOut"
+  <a href="" style="position: absolute; right: 0" @click="authStore.signOut"
     >logout</a
-  > -->
+  >
 
   <main>
     <aside>
@@ -28,7 +28,6 @@ const { edited } = storeToRefs(todoStore);
 function signOut() {
   authStore.signIn;
 }
-
 async function showBacklog(board: string) {}
 </script>
 

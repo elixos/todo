@@ -12,6 +12,7 @@
   </div>
   <div id="more" @click="viewMore"><img src="../assets/more.png" /></div>
   <Options v-if="more" />
+
   <div
     :class="'status' + status"
     @drop="drop(status)"
@@ -53,10 +54,11 @@
 
 <script setup lang="ts">
 import { onMounted, onUpdated, ref } from "vue";
-import { useTodoStore } from "../supabase";
+import { userData, useTodoStore } from "../supabase";
 import { storeToRefs } from "pinia";
 import Options from "./Options.vue";
 onMounted(() => todoStore.readTodo());
+
 onUpdated(() => todoStore.readTodo());
 
 const statusArr: string[] = ["A futuro", "Pendiente", "En curso", "Completado"];
