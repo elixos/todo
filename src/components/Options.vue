@@ -11,8 +11,10 @@ import AddTask from "./AddTask.vue";
 <style scoped>
 #fullscreen {
   position: absolute;
+  top: 2vh;
+  left: 2vw;
   width: 96vw;
-  height: 96vh;
+  height: 92vh;
   margin: 2vh 2w;
   background-color: #084b83;
   color: #fafafa;
