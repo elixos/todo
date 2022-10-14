@@ -122,9 +122,10 @@ function ending(evt: any) {
     }
     i++;
   }
-  if (target[0].attributes[0].value === "/src/assets/more.png")
+  if (target[0].attributes[0].value === "/src/assets/more.png") {
     rightClick(task.value);
-  viewMore(task.value);
+    viewMore(task.value);
+  }
 }
 
 function viewMore(todo: any) {
