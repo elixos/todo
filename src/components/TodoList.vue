@@ -102,10 +102,8 @@ function drop(destiny: number) {
 }
 
 function rightClick(todo: any) {
-  console.log(edited.value);
   edited.value = true;
   task.value = todo;
-  console.log(edited.value);
 }
 
 function move(evt: any) {}
@@ -122,7 +120,6 @@ function ending(evt: any) {
     }
     i++;
   }
-  console.log(target[0].attributes[0].value);
   if (target[0].attributes[0].value === "/assets/more.2cb618be.png") {
     rightClick(task.value);
     viewMore(task.value);
