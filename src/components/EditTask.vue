@@ -5,9 +5,11 @@
       <input type="text" v-model="title" :placeholder="task.task" />
       <input type="text" v-model="desc" :placeholder="task.desc" />
       <div @click="changeEdit">
-        <span class="equis">+ </span
-        ><b @click="todoStore.editTodo(task.id, title, desc)"> Modificar </b>
-        <b @click="todoStore.delTodo(task.id)"> Del </b>
+        <span class="equis">+ </span>
+        <div id="modButton" @click="todoStore.editTodo(task.id, title, desc)">
+          Cambia
+        </div>
+        <b @click="todoStore.delTodo(task.id)">▼ </b>
       </div>
     </div>
   </div>
@@ -40,6 +42,22 @@ input {
 #edit {
   display: none;
 }
+#modButton {
+  display: inline;
+  background-color: #fafafa;
+  color: #084b83;
+  padding: 0.5vw;
+  margin: 1.5vh;
+  border-radius: 5px;
+}
+input {
+  border-radius: 5px;
+  background-color: #fafafa;
+  height: 4vh;
+  border: none;
+  margin-bottom: 1vh;
+}
+
 @media only screen and (min-width: 700px) {
   #edit {
     display: block;

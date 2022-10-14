@@ -1,11 +1,13 @@
 <template>
   <div>
+    <label>Correo Electrónico</label>
+    <input type="text" v-model="email" />
+    <label>Contraseña</label>
     <input
-      type="text"
-      v-model="email"
-      placeholder="Introduce Correo Electrónico"
+      type="password"
+      v-model="password"
+      @keyup.enter="signIn(email, password)"
     />
-    <input type="password" v-model="password" placeholder="Contraseña" />
     <button type="submit" @click="signIn(email, password)">Accede</button>
   </div>
 </template>
@@ -32,23 +34,31 @@ div {
   max-width: 20vw;
   max-height: 50vh;
   position: absolute;
-  right: 8vw;
+  left: 8vw;
   bottom: 5vh;
 }
-input {
-  width: 90%;
-  height: 5vh;
-  margin-bottom: 3vh;
-  background-color: #fafafa;
-  color: #084b83;
-  font-weight: bold;
-  border: none;
-  padding: 0 5%;
-}
 button {
-  width: 100%;
+  display: inline;
+  background-color: #084b83;
+  color: #fafafa;
+  font-weight: bold;
+  font-size: 1em;
+  margin-top: 1vh;
+  padding: 0.5vw;
+  border-radius: 5px;
+}
+label {
+  font-weight: bold;
+  font-size: 1em;
+  color: black;
+}
+input {
+  border-radius: 5px;
   background-color: #fafafa;
   color: #084b83;
-  font-weight: bold;
+  height: 4vh;
+  width: 20vw;
+  border: none;
+  margin-bottom: 1.3vh;
 }
 </style>

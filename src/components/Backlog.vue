@@ -1,6 +1,6 @@
 <template>
   <div class="status" :key="0">
-    <div class="title">En Reserva</div>
+    <div class="title">RESERVA</div>
     <div>
       <template v-for="(todo, index) in taskArr" :key="index">
         <div

@@ -10,7 +10,8 @@
       COMPLETADO
     </div>
   </div>
-  <div id="more"><img src="../assets/more.png" /></div>
+  <div id="more" @click="viewMore"><img src="../assets/more.png" /></div>
+  <Options v-if="more" />
   <div
     :class="'status' + status"
     @drop="drop(status)"
@@ -24,7 +25,7 @@
     <div class="title">
       {{ statusArr[status].toLocaleUpperCase() }}
     </div>
-    <div class="lista" v-show="inMove">
+    <div class="lista">
       <template v-for="(todo, index) in taskArr" :key="index">
         <div
           draggable="true"
@@ -51,19 +52,19 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUpdated, reactive, ref } from "vue";
+import { onMounted, onUpdated, ref } from "vue";
 import { useTodoStore } from "../supabase";
 import { storeToRefs } from "pinia";
+import Options from "./Options.vue";
 onMounted(() => todoStore.readTodo());
 onUpdated(() => todoStore.readTodo());
 
 const statusArr: string[] = ["A futuro", "Pendiente", "En curso", "Completado"];
 const todoStore = useTodoStore();
 const { taskArr, task, edited } = storeToRefs(todoStore);
-const inMove = ref(true);
 const cat = ref(1);
+const more = ref(false);
 const screen = ref(window.innerWidth);
-// let screen = window.innerWidth;
 
 async function importantTodo(id: string, bool: boolean) {
   try {
@@ -98,9 +99,7 @@ function drop(destiny: number) {
   if (destiny === 3) importantTodo(task.value.id, true);
 }
 
-function move(evt: any) {
-  // inMove.value = false;
-}
+function move(evt: any) {}
 
 function ending(evt: any) {
   let x = evt.changedTouches[0].clientX;
@@ -121,8 +120,11 @@ function rightClick(todo: any) {
   task.value = todo;
 }
 
+function viewMore(todo: any) {
+  more.value = !more.value;
+}
+
 function viewCat(status: number) {
-  console.log(status);
   cat.value = status;
 }
 </script>
