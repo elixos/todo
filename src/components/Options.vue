@@ -1,7 +1,7 @@
 <template>
   <div id="fullscreen">
     <Backlog />
-    <AddTask addButon.value="true" />
+    <AddTask addButon="true" />
   </div>
 </template>
 <script setup lang="ts">
